@@ -257,6 +257,8 @@ export const ASSETHUB_GENESIS_TO_PEOPLE_GENESIS: Record<string, `0x${string}`> =
       NETWORKS.PASEO_ASSETHUBNEXTV2.peopleGenesis,
     [NETWORKS.PREVIEWNET_ASSETHUB.genesis]:
       NETWORKS.PREVIEWNET_ASSETHUB.peopleGenesis,
+    [NETWORKS.PCF_DEVNET_ASSETHUB.genesis]:
+      NETWORKS.PCF_DEVNET_ASSETHUB.peopleGenesis,
   };
 
 export function toHexString(value: Uint8Array): `0x${string}` {

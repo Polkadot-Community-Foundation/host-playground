@@ -11,6 +11,7 @@ describe("People chain configuration", () => {
   it("uses the configured People genesis for descriptors and ring locations", () => {
     const paseo = NETWORKS.PASEO_ASSETHUBNEXTV2;
     const preview = NETWORKS.PREVIEWNET_ASSETHUB;
+    const devnet = NETWORKS.PCF_DEVNET_ASSETHUB;
 
     expect(PEOPLE_CHAIN_BY_HUB[paseo.genesis]?.genesis).toBe(
       paseo.peopleGenesis,
@@ -21,8 +22,12 @@ describe("People chain configuration", () => {
     expect(ASSETHUB_GENESIS_TO_PEOPLE_GENESIS[preview.genesis]).toBe(
       preview.peopleGenesis,
     );
+    expect(ASSETHUB_GENESIS_TO_PEOPLE_GENESIS[devnet.genesis]).toBe(
+      devnet.peopleGenesis,
+    );
     expect(paseo.personhoodRingOwner).toBe("peopl.paseo");
     expect(preview.personhoodRingOwner).toBe("peopl.dot");
+    expect(devnet.personhoodRingOwner).toBe("peopl.dot");
     expect(PRODUCT_ALIAS_RING_LOCATION.chainId).toBe(
       NETWORKS[ACTIVE_CHAIN_ID].peopleGenesis,
     );

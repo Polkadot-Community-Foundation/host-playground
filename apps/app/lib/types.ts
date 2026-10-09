@@ -124,6 +124,22 @@ export const NETWORKS = {
     bulletinGenesis:
       "0xa081192b90c1f6a3f8e9ce7b2a8246f41af805c66456c84e05fd97c2b3502425" as const,
   },
+  PCF_DEVNET_ASSETHUB: {
+    name: "PCF Devnet Hub",
+    network: "Testnet",
+    genesis:
+      "0xd6eec26135305a8ad257a20d003357284c8aa03d0bdb2b357ab0a22371e11ef2" as const,
+    wsUrl: "wss://asset-hub-paseo-rpc.n.dwellir.com",
+    ss58Prefix: 0,
+    dotNsSuffix: "dot",
+    peopleWsUrl: "wss://people-paseo.rotko.net",
+    peopleGenesis:
+      "0xe6c30d6e148f250b887105237bcaa5cb9f16dd203bf7b5b9d4f1da7387cb86ec" as const,
+    personhoodRingOwner: "peopl.dot",
+    bulletinWsUrl: "wss://bulletin-paseo.tservices.es:8443",
+    bulletinGenesis:
+      "0xe101f0fa4627d29a257645e02be86d80378fea1a2bf8fa6a918d150ebc760a59" as const,
+  },
 } as const;
 
 export type ChainId = keyof typeof NETWORKS;
