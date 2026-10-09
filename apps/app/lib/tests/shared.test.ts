@@ -16,6 +16,9 @@ describe("People chain configuration", () => {
     expect(PEOPLE_CHAIN_BY_HUB[paseo.genesis]?.genesis).toBe(
       paseo.peopleGenesis,
     );
+    expect(PEOPLE_CHAIN_BY_HUB[devnet.genesis]?.genesis).toBe(
+      devnet.peopleGenesis,
+    );
     expect(ASSETHUB_GENESIS_TO_PEOPLE_GENESIS[paseo.genesis]).toBe(
       paseo.peopleGenesis,
     );

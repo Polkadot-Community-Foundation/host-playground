@@ -244,8 +244,15 @@ export const PASEO_NEXT_INDIVIDUALITY = {
   // today. It keeps NETWORKS as the one value host routing reads.
   genesis: NETWORKS.PASEO_ASSETHUBNEXTV2.peopleGenesis,
 } satisfies typeof paseo_individuality;
+// The PCF devnet People chain is public Paseo People, whose
+// Resources.UsernameOwnerOf matches the paseo_individuality descriptor.
+export const PCF_DEVNET_INDIVIDUALITY = {
+  ...paseo_individuality,
+  genesis: NETWORKS.PCF_DEVNET_ASSETHUB.peopleGenesis,
+} satisfies typeof paseo_individuality;
 export const PEOPLE_CHAIN_BY_HUB: Record<string, typeof paseo_individuality> = {
   [NETWORKS.PASEO_ASSETHUBNEXTV2.genesis]: PASEO_NEXT_INDIVIDUALITY,
+  [NETWORKS.PCF_DEVNET_ASSETHUB.genesis]: PCF_DEVNET_INDIVIDUALITY,
 };
 
 // The personhood rings live on the People chain, not the hub, so the ring
