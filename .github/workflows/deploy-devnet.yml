@@ -1,0 +1,53 @@
+name: Deploy devnet
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-devnet
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy host-playground.dot
+    runs-on: ubuntu-latest
+    environment: devnet
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build for devnet
+        run: yarn build:devnet
+
+      - name: Install polkadot-app-deploy and dotns CLI
+        run: |
+          npm install -g @polkadot-community-foundation/polkadot-app-deploy@0.16.7 \
+                         @polkadot-community-foundation/dotns-cli@0.9.5
+
+      - name: Deploy
+        env:
+          DEPLOYER_MNEMONIC: ${{ secrets.DEPLOYER_MNEMONIC }}
+        run: |
+          set -euo pipefail
+          polkadot-app-deploy apps/app/out host-playground.dot \
+            --env devnet \
+            --mnemonic "$DEPLOYER_MNEMONIC" \
+            --config bulletin-deploy.config.ts \
+            --js-merkle
+
+      - name: Read back
+        run: dotns lookup --name host-playground --env devnet
