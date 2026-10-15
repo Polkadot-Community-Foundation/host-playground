@@ -1,13 +1,24 @@
 import { test, expect } from "./fixtures";
 import { waitForAppReady, runTest } from "./helpers";
 
+// Matches the allocation cards' own 120s timeout, with room to report.
+const ALLOCATION_WAIT_MS = 150_000;
+
 test.describe("Allowance then usage flows", () => {
+  // The allocation cards wait on the host either way, and the usage half
+  // reads from live Paseo, so give these room.
+  test.slow();
+
   test("statement store: allocate allowance, submit statement", async ({
     testHost,
   }) => {
     const frame = await waitForAppReady(testHost);
 
-    const alloc = await runTest(frame, "allowances-statement-store");
+    const alloc = await runTest(
+      frame,
+      "allowances-statement-store",
+      ALLOCATION_WAIT_MS,
+    );
     expect(alloc).toBe("success");
 
     // The container gates submit behind this permission.
@@ -27,7 +38,11 @@ test.describe("Allowance then usage flows", () => {
     const frame = await waitForAppReady(testHost);
 
     // The bulletin allowance is the one that covers preimage storage.
-    const alloc = await runTest(frame, "allowances-bulletin");
+    const alloc = await runTest(
+      frame,
+      "allowances-bulletin",
+      ALLOCATION_WAIT_MS,
+    );
     expect(alloc).toBe("success");
 
     // The container gates submit behind this permission.
@@ -46,7 +61,11 @@ test.describe("Allowance then usage flows", () => {
   }) => {
     const frame = await waitForAppReady(testHost);
 
-    const alloc = await runTest(frame, "allowances-smart-contract");
+    const alloc = await runTest(
+      frame,
+      "allowances-smart-contract",
+      ALLOCATION_WAIT_MS,
+    );
     expect(alloc).toBe("success");
 
     // A read needs no ChainSubmit permission, so the allowance is enough.
@@ -59,7 +78,7 @@ test.describe("Allowance then usage flows", () => {
   }) => {
     const frame = await waitForAppReady(testHost);
 
-    const alloc = await runTest(frame, "allowances-all");
+    const alloc = await runTest(frame, "allowances-all", ALLOCATION_WAIT_MS);
     expect(alloc).toBe("success");
 
     const statementProof = await runTest(frame, "statement-store-create-proof");

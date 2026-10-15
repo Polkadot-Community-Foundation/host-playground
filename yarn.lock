@@ -704,13 +704,6 @@
     "@polkadot-labs/hdkd-helpers" "^0.0.29"
     ipfs-unixfs "^12.0.0"
 
-"@parity/host-api-test-sdk@0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@parity/host-api-test-sdk/-/host-api-test-sdk-0.17.0.tgz#5578a1a40985825aaf000e74cbd51c223e39332e"
-  integrity sha512-7NlGk7/HGkImb8dyPug1Z/4aFS9jBFAz4tAtcl/Jvv6nZ6h3FZCDjOXJvVye5TBeaSuK+Je2y2OlJWZyzGwnzw==
-  dependencies:
-    "@parity/truapi" "0.24.0"
-
 "@parity/product-sdk-address@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@parity/product-sdk-address/-/product-sdk-address-0.2.0.tgz#fa9efb6fa88aeadc4d7a39bf00c4c8f1ca98824b"
@@ -922,7 +915,16 @@
   resolved "https://registry.yarnpkg.com/@parity/result/-/result-0.2.0.tgz#cc9ea4cf876af7e06b504f66a3aabbfa408d7e22"
   integrity sha512-QCrhYPeVVaPIjnlsfBIk5GHPRqfuCjy6MjqKkoCP4kwS1LIo5YtJCSFeB5mGtvMG7hiaRNl4lHQcd5YqDfJ1tQ==
 
-"@parity/truapi@0.24.0", "@parity/truapi@^0.24.0":
+"@parity/truapi-host@0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@parity/truapi-host/-/truapi-host-0.24.0.tgz#c30f31d84cf90485901b02db7987b40f087ab87c"
+  integrity sha512-z1q4DwqVR+UdxD3uptnGW+tfNfdPOuBSZ/NuNY8iTYK8jrpidp8x9j/Srr4iDss0u+1vjkSGMcrkxW9mIF76sw==
+  dependencies:
+    "@noble/hashes" "^2.2.0"
+    "@parity/truapi" "^0.24.0"
+    neverthrow "^8.2.0"
+
+"@parity/truapi@^0.24.0":
   version "0.24.0"
   resolved "https://registry.yarnpkg.com/@parity/truapi/-/truapi-0.24.0.tgz#7d71279cb7053ce03437af2ce9eff956b1c32fdb"
   integrity sha512-NHCcFgif/gxtNLzkODU5ZFkF6Zwixe/lnNSTFFZTKTQ6CDLs75vcxkLHkABfUv1chlT0fA/09Fw9+OtLHYo7CQ==
