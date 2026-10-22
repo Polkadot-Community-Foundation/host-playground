@@ -80,8 +80,13 @@ yarn lint
 yarn test:e2e         # Playwright against a mock Host
 ```
 
-The E2E suite drives the real cards through `@parity/host-api-test-sdk`, so it
+The E2E suite drives the real cards through `@parity/truapi-host/testing`, so it
 runs without a Host of its own.
+
+It runs against live Paseo for chain reads. Resource allocation is answered as
+granted, so the suite needs no funded account and no personhood. The real
+allocation path is covered against every host by the daily app-e2e suite in
+`paritytech/triangle-e2e`.
 
 ## Deployment
 

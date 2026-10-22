@@ -87,6 +87,7 @@ export const preimageTests: TestDefinition[] = [
     description: "Creates a preimage manager via createHostPreimageManager",
     api: "createHostPreimageManager()",
     category: "preimage",
+    timeoutMs: 90_000,
     async run() {
       const manager = await createHostPreimageManager();
       if (!manager)
@@ -109,7 +110,8 @@ export const preimageTests: TestDefinition[] = [
       "Submits a timestamped text file through the host's preimage submit, derives its canonical CID, and fetches it back by CID via the host's preimage lookup (no public IPFS gateway). Asserts byte equality.",
     api: "getPreimageManager().submit + calculateCid + queryBytes(cid)",
     category: "preimage",
-    timeoutMs: 90_000,
+    // Allowance claim, Bulletin inclusion, then up to 60s of lookup.
+    timeoutMs: 120_000,
     async run({ chain, log }) {
       log("Requesting BulletinAllowance...");
       try {
