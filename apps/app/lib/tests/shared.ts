@@ -240,7 +240,7 @@ export async function findRegisteredRingVrfKeyHandle(
 // the wrong chain.
 export const PASEO_NEXT_INDIVIDUALITY = {
   ...paseo_individuality,
-  // Descriptors 0.12 carries the post-reset genesis, so this override matches it
+  // Descriptors 0.14 carries the post-reset genesis, so this override matches it
   // today. It keeps NETWORKS as the one value host routing reads.
   genesis: NETWORKS.PASEO_ASSETHUBNEXTV2.peopleGenesis,
 } satisfies typeof paseo_individuality;
@@ -545,7 +545,6 @@ export async function prepareSimpleStoreWrite(
 
 interface TxEvent {
   type: string;
-  found?: boolean;
   ok?: boolean;
   txHash?: string;
 }
@@ -576,7 +575,7 @@ export function watchTx(
         }
         const done =
           until === "best"
-            ? event.type === "txBestBlocksState" && event.found
+            ? event.type === "inBestBlock"
             : event.type === "finalized";
         if (done) {
           settled = true;
